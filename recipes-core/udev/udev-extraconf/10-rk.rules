@@ -1,0 +1,7 @@
+KERNEL=="hevc-service", MODE="0666", GROUP="video"
+KERNEL=="rkvdec", MODE="0666", GROUP="video"
+KERNEL=="mali0", MODE="0666", GROUP="video"
+KERNEL=="mali", MODE="0666", GROUP="video"
+KERNEL=="vpu-service", MODE="0666", GROUP="video"
+KERNEL=="vpu_service", MODE="0666", GROUP="video"
+KERNEL=="media*", MODE="0666", GROUP="video"
