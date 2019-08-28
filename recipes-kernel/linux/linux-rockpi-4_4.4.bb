@@ -1,3 +1,5 @@
+DESCRIPTION = "Linux kernel for RockPi-4"
+
 require recipes-kernel/linux/linux-yocto.inc
 
 DEPENDS += "openssl-native"
