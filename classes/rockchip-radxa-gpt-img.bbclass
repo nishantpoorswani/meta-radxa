@@ -1,6 +1,4 @@
-# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
-# Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
-# Released under the MIT license (see COPYING.MIT for the terms)
+# Create an image that can be written onto a SD card using dd.
 
 inherit image_types
 
