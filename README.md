@@ -123,7 +123,7 @@ The Serial Console on all 3 boards is enabled on UART-2.
 
 ```
 Username: root
-Password: toor
+Password: rock
 ```
 
 ## Contributing <a name="contributing"></a>
