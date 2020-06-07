@@ -1,0 +1,63 @@
+From 927e8ba2001ace97467033e6ab40deda742f1160 Mon Sep 17 00:00:00 2001
+From: Cody Xie <xkd@rock-chips.com>
+Date: Sat, 7 Jan 2017 11:02:06 +0800
+Subject: [PATCH 9/9] Add support reboot loader command.
+
+Signed-off-by: huaping.liao <huaping.liao@rock-chips.com>
+Signed-off-by: Cody Xie <xkd@rock-chips.com>
+---
+ init/halt.c | 9 ++++++++-
+ init/init.c | 5 +++++
+ 2 files changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/init/halt.c b/init/halt.c
+index 572d751..6b5c975 100644
+--- a/init/halt.c
++++ b/init/halt.c
+@@ -103,7 +103,8 @@ int halt_main(int argc UNUSED_PARAM, char **argv)
+ 		RB_POWER_OFF,
+ 		RB_AUTOBOOT
+ 	};
+-	static const smallint signals[] = { SIGUSR1, SIGUSR2, SIGTERM };
++	// add SIGPWR for reboot loader
++	static const smallint signals[] = { SIGUSR1, SIGUSR2, SIGTERM, SIGPWR };
+ 
+ 	int delay = 0;
+ 	int which, flags, rc;
+@@ -139,6 +140,12 @@ int halt_main(int argc UNUSED_PARAM, char **argv)
+ 			/* talk to linuxrc */
+ 			/* bbox init/linuxrc assumed */
+ 			pid_t *pidlist = find_pid_by_name("linuxrc");
++			//set reboot parameter
++			if (signals[which] == SIGTERM) {
++				if (argc > 1 && strstr(argv[1], "loader") != NULL) {
++					which++;
++				}
++			}
+ 			if (pidlist[0] > 0)
+ 				rc = kill(pidlist[0], signals[which]);
+ 			if (ENABLE_FEATURE_CLEAN_UP)
+diff --git a/init/init.c b/init/init.c
+index 6eb76b8..169d8c2 100644
+--- a/init/init.c
++++ b/init/init.c
+@@ -801,6 +802,7 @@ static void run_shutdown_and_kill_processes(void)
+  */
+ 
+ /* The SIGPWR/SIGUSR[12]/SIGTERM handler */
++#define RB_AUTOBOOT_CMD	0xa1b2c3d4
+ static void halt_reboot_pwoff(int sig) NORETURN;
+ static void halt_reboot_pwoff(int sig)
+ {
+@@ -825,6 +827,9 @@ static void halt_reboot_pwoff(int sig)
+ 	} else if (sig == SIGUSR2) {
+ 		m = "poweroff";
+ 		rb = RB_POWER_OFF;
++	} else if (sig == SIGPWR) {
++		m = "reboot loader";
++		rb = RB_AUTOBOOT_CMD;
+ 	}
+ 	message(L_CONSOLE, "Requesting system %s", m);
+ 	pause_and_low_level_reboot(rb);
+-- 
+2.7.4
