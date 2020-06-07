@@ -34,6 +34,8 @@ DISTRO ?= "poky"
 # We default to rpm:
 PACKAGE_CLASSES ?= "package_rpm"
 
+# We default to enabling the debugging tweaks.
+EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
 #
 # Additional image features
 #
