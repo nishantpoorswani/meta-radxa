@@ -1,0 +1,26 @@
+From 17172fd2f8646271db29a5440ea5ff08480b45b9 Mon Sep 17 00:00:00 2001
+From: nishantpoorswani <nishantpoorswani@gmail.com>
+Date: Sun, 17 May 2020 22:28:37 +0530
+Subject: [PATCH] Use local command.h file instead of system file
+
+Signed-off-by: nishantpoorswani <nishantpoorswani@gmail.com>
+---
+ include/bootm.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/bootm.h b/include/bootm.h
+index 49813772ce..82848eb50b 100644
+--- a/include/bootm.h
++++ b/include/bootm.h
+@@ -8,7 +8,7 @@
+ #ifndef _BOOTM_H
+ #define _BOOTM_H
+ 
+-#include <command.h>
++#include "command.h"
+ #include <image.h>
+ 
+ #define BOOTM_ERR_RESET		(-1)
+-- 
+2.26.2
+
