@@ -11,9 +11,11 @@
     3. [Step 3:Bblayers.conf Setup](#bblayers.conf_setup)
     4. [Step 4:Local.conf Setup](#local.conf_setup)
     5. [Step 5:Building the Image](#build_image)
-5. [Contributing](#contributing)
-6. [Reporting Bugs](#bugs)
-7. [Maintainers](#maintainers)
+5. [Serial Console](#serial_console)
+6. [Login Details](#login)
+7. [Contributing](#contributing)
+8. [Reporting Bugs](#bugs)
+9. [Maintainers](#maintainers)
 
 
 ## Introduction <a name="introduction"></a>
@@ -48,7 +50,7 @@ Fetch the source using the commands given below:
 ~/yocto $ git clone git://git.yoctoproject.org/poky -b thud
 ~/yocto $ cd poky
 ~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b thud
-~/yocto/poky $ git clone git://github.com/nishantpoorswani/meta-radxa.git -b thud
+~/yocto/poky $ git clone https://github.com/nishantpoorswani/meta-radxa.git -b thud
 </code></pre>
 
 ### Step 2: Setting up the Environment <a name="setup"></a>
@@ -105,6 +107,24 @@ PACKAGECONFIG_append_pn-systemd = " resolved networkd"
 ```
 
 **At the end of a successful build, you should have a gpt.img image in build/tmp/deploy/images/MACHINE/ folder.The gpt.img can be directly flashed on the sd-card**
+
+## Serial Console <a name="serial_console"></a>
+
+The Serial Console on all 3 boards is enabled on UART-2.
+
+**Helpful Links:**
+
++ GPIO Pinout for RockPi-S (https://wiki.radxa.com/RockpiS/hardware/gpio)
++ GPIO Pinout for RockPi-4 (https://wiki.radxa.com/Rockpi4/hardware/gpio)
++ GPIO Pinout for RockPi-E (https://wiki.radxa.com/RockpiE/hardware/rockpiE#gpio)
++ RockPi-4 Serial Console Setup (https://wiki.radxa.com/Rockpi4/dev/serial-console)
+
+## Login Details <a name="login"></a>
+
+```
+Username: root
+Password: toor
+```
 
 ## Contributing <a name="contributing"></a>
 
