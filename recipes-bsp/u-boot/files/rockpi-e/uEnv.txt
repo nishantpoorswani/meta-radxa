@@ -1,6 +1,6 @@
 verbosity=7
 fdtfile=rk3328-rock-pi-e.dtb
-console=ttyS2,1500000n8
-overlays=rk3328-uart2
+console=ttyFIQ0,1500000n8
+overlays=rk3328-console-on-uart2
 kernelimg=Image
 rootuuid=b921b045-1df0-41c3-af44-4c6f280d3fae
