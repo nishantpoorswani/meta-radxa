@@ -13,9 +13,12 @@
     5. [Step 5:Building the Image](#build_image)
 5. [Serial Console](#serial_console)
 6. [Login Details](#login)
-7. [Contributing](#contributing)
-8. [Reporting Bugs](#bugs)
-9. [Maintainers](#maintainers)
+7. [Networking](#networking)
+    1. [Wifi Connectivity](#wifi)
+8. [Release Info](#release_info)
+9. [Contributing](#contributing)
+10. [Reporting Bugs](#bugs)
+11. [Maintainers](#maintainers)
 
 
 ## Introduction <a name="introduction"></a>
@@ -36,7 +39,7 @@ The meta-radxa layer depends on:
 ## List of Radxa Boards supported <a name="list_of_boards_supported"></a>
 
 1) RockPi-S
-2) RockPi-4
+2) RockPi-4 (Community Tested)
 3) RockPi-E
 
 ## Using the meta-radxa layer <a name="meta_radxa_usage"></a>
@@ -77,7 +80,7 @@ Fetch the source using the commands given below:
 
 ### Step 4: Local.conf Setup <a name="local.conf_setup"></a>
 
-* You can simply copy the local.conf.sample present in meta-radxa/conf folder to the build/conf foldermage and rename it to local.conf and uncomment the machine for which you want to build an image
+* You can simply copy the local.conf.sample present in meta-radxa/conf folder to the build/conf folder and rename it to local.conf and uncomment the machine for which you want to build an image
 
 <div align="center"><b>OR</b></div>
 
@@ -106,7 +109,7 @@ PACKAGECONFIG_append_pn-systemd = " resolved networkd"
 ~/yocto/poky/build $ bitbake -k radxa-console-image
 ```
 
-**At the end of a successful build, you should have a gpt.img image in build/tmp/deploy/images/MACHINE/ folder.The gpt.img can be directly flashed on the sd-card**
+**At the end of a successful build, you should have a gpt.img image in build/tmp/deploy/images/MACHINE/ folder. The gpt.img can be directly flashed on the sd-card**
 
 ## Serial Console <a name="serial_console"></a>
 
@@ -125,6 +128,70 @@ The Serial Console on all 3 boards is enabled on UART-2.
 Username: root
 Password: rock
 ```
+
+## Networking <a name="networking"></a>
+
+**Network Devices available:**
+
++ Wifi
++ Ethernet
+
+### Wifi Connectivity <a name="wifi"></a>
+
++ Using Commandline Based GUI(nmtui)
+
+nmtui is a curses based GUI. You can start it by running the following command:
+
+```
+nmtui
+```
+
++ Using Commandline Utility(nmcli)
+
+nmcli is a command-line tool for controlling NetworkManager and reporting network status.
+
+**List available devices**
+
+```
+nmcli dev
+```
+
+**Turn on Wifi**
+
+```
+nmcli r wifi on
+```
+
+**Scanning different devices**
+
+```
+nmcli dev wifi
+```
+
+**Connect to WiFi Hotspot**
+
+```
+nmcli dev wifi connect "SSID" password "PASSWORD"
+```
+
+***Note:You need to replace “SSID” and “Password” with your actual WiFi’s SSID and password.***
+
+## Release Info <a name="release_info"></a>
+
+1. RockPi-S
+
++ Kernel version: 4.4.143+d4df55c26071c4457a72f16b2b9ab9e0584f5118
++ U-Boot version: 2017.09+912f34819b3e2d567a1f1255125ad53755f02937
+
+2. RockPi-4
+
++ Kernel version: 4.4.154+a14f6502e0454a51626e3906f59637ab264bf53e
++ U-Boot version: 2017.09+6d910b7f12318e5a5bb8d1b2093fe5a9ba17dfce
+
+3. RockPi-E
+
++ Kernel version: 4.4.194+615ae743115011bbe1cd1edc5c9118bf95527f54
++ U-Boot version: 2019.10+7b93f1b8bce4106266d4a38dde96fd8080faccea
 
 ## Contributing <a name="contributing"></a>
 
