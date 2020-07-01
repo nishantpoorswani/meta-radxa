@@ -12,16 +12,19 @@ S = "${WORKDIR}/git"
 
 LOADER_rk3308 ?= "bin/rk33/rk3308_loader_589MHz_uart2_m0_v1.26.111.bin"
 LOADER_rk3328 ?= "bin/rk33/rk3328_loader_ddr333_v1.14.243.bin"
-LOADER_rk3399 ?= "bin/rk33/rk3399_loader_*.bin"
+LOADER_rk3399 ?= "bin/rk33/rk3399_loader_v1.12.112.bin"
 
 MINILOADER_rk3308 ?= "bin/rk33/rk3308_miniloader_v1.14.bin"
-MINILOADER_rk3328 ?= "bin/rk33/rk3328_miniloader_*.bin"
-MINILOADER_rk3399 ?= "bin/rk33/rk3399_miniloader_v*.bin"
+MINILOADER_rk3328 ?= "bin/rk33/rk322xh_miniloader_v2.50.bin"
+MINILOADER_rk3399 ?= "bin/rk33/rk3399_miniloader_v1.19.bin"
 
 DDR_rk3308 ?= "bin/rk33/rk3308_ddr_589MHz_uart2_m0_v1.26.bin"
 DDR_rk3328 ?= "bin/rk33/rk3328_ddr_333MHz_v1.16.bin"
-DDR_rk3399 ?= "bin/rk33/rk3399_ddr_800MHz_*.bin"
+DDR_rk3399 ?= "bin/rk33/rk3399_ddr_800MHz_v1.22.bin"
 
+BL31_rk3308 ?= "bin/rk33/rk3308_bl31_v2.21.elf"
+BL31_rk3328 ?= "bin/rk33/rk322xh_bl31_v1.40.elf"
+BL31_rk3399 ?= "bin/rk33/rk3399_bl31_v1.28.elf"
 inherit deploy
 
 DDR_BIN = "ddr.bin"
@@ -29,45 +32,16 @@ LOADER_BIN = "loader.bin"
 MINILOADER_BIN = "miniloader.bin"
 ATF_BIN = "atf.bin"
 UBOOT_IMG = "uboot.img"
-TRUST_IMG = "trust.img"
 
 RKBINARY_DEPLOY_DIR = "${DEPLOYDIR}/radxa-binary"
 
 do_deploy () {
 	install -d ${RKBINARY_DEPLOY_DIR}
-	echo "done"
 	[ ${DDR} ] && cp ${S}/${DDR} ${RKBINARY_DEPLOY_DIR}/${DDR_BIN}
-	echo "done"	
-	[ ${MINILOADER} ] && cp ${S}/${MINILOADER} ${RKBINARY_DEPLOY_DIR}/${MINILOADER_BIN}
-	echo "done"	
+	[ ${MINILOADER} ] && cp ${S}/${MINILOADER} ${RKBINARY_DEPLOY_DIR}/${MINILOADER_BIN}	
 	[ ${LOADER} ] && cp ${S}/${LOADER} ${RKBINARY_DEPLOY_DIR}/${LOADER_BIN}
-	echo "done"
 	[ ${ATF} ] && cp ${S}/${ATF} ${RKBINARY_DEPLOY_DIR}/${ATF_BIN}
-
-	# Don't remove it!
-	echo "done"
-}
-
-deploy_prebuilt_image () {
-	install -d ${RKBINARY_DEPLOY_DIR}
-	echo "done"
-	[ -e {S}/img/${UBOOT_IMG} ] && \
-		cp ${S}/img/${UBOOT_IMG} ${RKBINARY_DEPLOY_DIR}/${UBOOT_IMG}
-	echo "done"
-	[ -e ${S}/img/${TRUST_IMG}  ] && \
-		cp ${S}/img/${TRUST_IMG} ${RKBINARY_DEPLOY_DIR}/${TRUST_IMG}
-}
-
-do_deploy_append_rk3328 () {
-	deploy_prebuilt_image
-}
-
-do_deploy_append_rk3399 () {
-	deploy_prebuilt_image
-}
-
-do_deploy_append_rk3308 () {
-	deploy_prebuilt_image
+	[ ${BL31} ] && cp ${S}/${BL31} ${RKBINARY_DEPLOY_DIR}/${BL31_BIN}
 }
 
 addtask deploy before do_build after do_compile
