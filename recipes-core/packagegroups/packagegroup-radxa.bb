@@ -16,4 +16,5 @@ RDEPENDS_packagegroup-radxa = "\
     networkmanager \
     networkmanager-nmtui \
     openssh-sftp-server \
+    bluez5 \
     "
