@@ -10,6 +10,19 @@ DEPENDS = "dtc-native bc-native swig-native bison-native"
 # u-boot will build native python module
 inherit pythonnative
 
+do_configure () {
+    if [ -z "${UBOOT_CONFIG}" ]; then
+        if [ -n "${UBOOT_MACHINE}" ]; then
+            oe_runmake -C ${S} O=${B} ${UBOOT_MACHINE}
+        else
+            oe_runmake -C ${S} O=${B} oldconfig
+        fi
+	echo ${PWD}
+        ${S}/scripts/kconfig/merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
+        cml1_do_configure
+    fi
+}
+
 do_compile_prepend () {
 	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
 	export STAGING_LIBDIR=${STAGING_LIBDIR_NATIVE};

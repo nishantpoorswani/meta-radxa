@@ -50,10 +50,10 @@ Fetch the source using the commands given below:
 
 <pre><code>~ $ mkdir yocto
 ~ $ cd yocto
-~/yocto $ git clone git://git.yoctoproject.org/poky -b thud
+~/yocto $ git clone git://git.yoctoproject.org/poky -b warrior
 ~/yocto $ cd poky
-~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b thud
-~/yocto/poky $ git clone https://github.com/nishantpoorswani/meta-radxa.git -b thud
+~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b warrior
+~/yocto/poky $ git clone https://github.com/nishantpoorswani/meta-radxa.git -b warrior
 </code></pre>
 
 ### Step 2: Setting up the Environment <a name="setup"></a>
