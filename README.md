@@ -15,10 +15,12 @@
 6. [Login Details](#login)
 7. [Networking](#networking)
     1. [Wifi Connectivity](#wifi)
+    2. [Bluetooth Connectivity](#bluetooth)    
 8. [Release Info](#release_info)
-9. [Contributing](#contributing)
-10. [Reporting Bugs](#bugs)
-11. [Maintainers](#maintainers)
+9. [Change Log](#change_log)
+10. [Contributing](#contributing)
+11. [Reporting Bugs](#bugs)
+12. [Maintainers](#maintainers)
 
 
 ## Introduction <a name="introduction"></a>
@@ -135,6 +137,7 @@ Password: rock
 
 + Wifi
 + Ethernet
++ Bluetooth
 
 ### Wifi Connectivity <a name="wifi"></a>
 
@@ -176,6 +179,94 @@ nmcli dev wifi connect "SSID" password "PASSWORD"
 
 ***Note:You need to replace “SSID” and “Password” with your actual WiFi’s SSID and password.***
 
+### Bluetooth Connectivity <a name="bluetooth"></a>
+
++ Bluetooth on RockPi-S
+
+**Manual setup for bluetooth:**
+
+```
+echo 0 > /sys/class/rfkill/rfkill0/state
+echo 1 > /sys/class/rfkill/rfkill0/state
+insmod /lib/modules/4.4.143/kernel/drivers/bluetooth/hci_uart.ko
+rtk_hciattach -n -s 115200 /dev/ttyS4 rtk_h5 &
+hciconfig hci0 up
+```
+
+**Check Bluetooth device:**
+
+```
+ $ hciconfig
+ hci0:   Type: Primary  Bus: UART
+         BD Address: 22:22:70:B2:10:6F  ACL MTU: 1021:8  SCO MTU: 255:12
+         UP RUNNING 
+         RX bytes:1399 acl:0 sco:0 events:45 errors:0
+         TX bytes:3458 acl:0 sco:0 commands:45 errors:0
+```
+
++ Bluetooth on RockPi-E
+
+**Manual setup for bluetooth:**
+
+```
+rmmod btusb
+rmmod btrtl
+rmmod btbcm
+rmmod btintel
+rmmod bt_rtl8723du
+rmmod bt_rtl8821cu
+```
+
+***Now probe the correct driver depending on the wifi/bt chip present on your RockPi-E board*** 
+ 
+If the Wifi/bt chip is RTL8723DU use the commands given below:
+
+```
+ modprobe bt_rtl8723du
+ hciconfig hci0 up
+```
+
+<div align="center"><b>OR</b></div>
+
+If the Wifi/bt chip is RTL8821CU use the commands given below:
+
+```
+ modprobe bt_rtl8821cu
+ hciconfig hci0 up
+```
+
+**Check Bluetooth device:**
+
+```
+ $ hciconfig
+ hci0:   Type: Primary  Bus: USB
+         BD Address: 74:EE:2A:55:23:F7  ACL MTU: 1021:8  SCO MTU: 255:12
+         UP RUNNING 
+         RX bytes:40357 acl:34 sco:0 events:814 errors:0
+         TX bytes:216782 acl:379 sco:0 commands:101 errors:0
+```
+
++ Bluetooth on RockPi-4
+
+**Manual setup for bluetooth:**
+
+```
+rfkill block bluetooth
+/usr/bin/brcm_patchram_plus -d --enable_hci --no2bytes --use_baudrate_for_downloade --tosleep 200000 --baudrate 1500000 --patchram /system/etc/firmware/BCM4345C5.hcd /dev/ttyS0 > /dev/null 2>&1 &
+hciconfig hci0 up
+```
+
+**Check Bluetooth device:**
+
+```
+ $ hciconfig
+ hci0:   Type: Primary  Bus: UART
+         BD Address: 43:45:C5:00:1F:AC  ACL MTU: 1021:8  SCO MTU: 64:1
+         UP RUNNING 
+         RX bytes:876 acl:0 sco:0 events:62 errors:0
+         TX bytes:4755 acl:0 sco:0 commands:62 errors:0
+```
+
 ## Release Info <a name="release_info"></a>
 
 1. RockPi-S
@@ -192,6 +283,15 @@ nmcli dev wifi connect "SSID" password "PASSWORD"
 
 + Kernel version: 4.4.194-12-615ae743115011bbe1cd1edc5c9118bf95527f54
 + U-Boot version: 2019.10-7b93f1b8bce4106266d4a38dde96fd8080faccea
+
+## Change Log <a name="change_log"></a>
+
++ RockPi-S Kernel updated to 4.4.143-39-daf243b9655a73ee14568e36cf76ac8a094e68e6
++ RockPi-S U-Boot updated to 2017.09-c3d3bc84bef5ee95d7199c23e1a34e47ea8f0daf (Supports boot.cmd and uEnv.txt)
++ RockPi-4 Kernel updated to 4.4.154-95-d2ab1f26e1b33970a6ccda18633a681a7730665e
++ Firmware file location fixed for RockPi-E
++ Bluetooth works for RockPi-S, RockPi-E and RockPi-4
++ Added Bluetooth Connectivity section in README.md
 
 ## Contributing <a name="contributing"></a>
 
