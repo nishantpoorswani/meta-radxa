@@ -180,18 +180,18 @@ nmcli dev wifi connect "SSID" password "PASSWORD"
 
 1. RockPi-S
 
-+ Kernel version: 4.4.143+d4df55c26071c4457a72f16b2b9ab9e0584f5118
-+ U-Boot version: 2017.09+912f34819b3e2d567a1f1255125ad53755f02937
++ Kernel version: 4.4.143-39-daf243b9655a73ee14568e36cf76ac8a094e68e6
++ U-Boot version: 2017.09-c3d3bc84bef5ee95d7199c23e1a34e47ea8f0daf
 
 2. RockPi-4
 
-+ Kernel version: 4.4.154+a14f6502e0454a51626e3906f59637ab264bf53e
-+ U-Boot version: 2017.09+6d910b7f12318e5a5bb8d1b2093fe5a9ba17dfce
++ Kernel version: 4.4.154-a14f6502e0454a51626e3906f59637ab264bf53e
++ U-Boot version: 2017.09-6d910b7f12318e5a5bb8d1b2093fe5a9ba17dfce
 
 3. RockPi-E
 
-+ Kernel version: 4.4.194+615ae743115011bbe1cd1edc5c9118bf95527f54
-+ U-Boot version: 2019.10+7b93f1b8bce4106266d4a38dde96fd8080faccea
++ Kernel version: 4.4.194-12-615ae743115011bbe1cd1edc5c9118bf95527f54
++ U-Boot version: 2019.10-7b93f1b8bce4106266d4a38dde96fd8080faccea
 
 ## Contributing <a name="contributing"></a>
 
