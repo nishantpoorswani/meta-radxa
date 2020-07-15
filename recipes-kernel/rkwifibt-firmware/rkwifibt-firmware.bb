@@ -18,7 +18,9 @@ do_install() {
 	install -m 0644 ${S}/firmware/broadcom/AP6256/*/* \
 		-t ${D}/system/etc/firmware/
 	install -d ${D}/lib/firmware/rtlbt/
-	install -m 0644 ${S}/realtek/RTL*/* -t ${D}/lib/firmware/rtlbt/
+	install -m 0644 ${S}/realtek/RTL8723DS/* -t ${D}/lib/firmware/rtlbt/
+	install -m 0644 ${S}/realtek/RTL8723DU/* -t ${D}/lib/firmware/
+	install -m 0644 ${S}/realtek/RTL8821CU/* -t ${D}/lib/firmware/
 }
 
 PACKAGES =+ " \
@@ -44,13 +46,13 @@ FILES_${PN}-rtl8723ds-bt = " \
 "
 
 FILES_${PN}-rtl8723du-bt = " \
-	lib/firmware/rtlbt/rtl8723du_config \
-	lib/firmware/rtlbt/rtl8723du_fw \
+	lib/firmware/rtl8723du_config \
+	lib/firmware/rtl8723du_fw \
 "
 
 FILES_${PN}-rtl8821cu-bt = " \
-	lib/firmware/rtlbt/rtl8821cu_config \
-	lib/firmware/rtlbt/rtl8821cu_fw \
+	lib/firmware/rtl8821cu_config \
+	lib/firmware/rtl8821cu_fw \
 "
 
 FILES_${PN} = "*"
