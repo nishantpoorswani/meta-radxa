@@ -30,11 +30,11 @@ The OpenEmbedded/Yocto Project BSP layer for the Radxa machines
 The meta-radxa layer depends on:
 
 	URI: git://git.yoctoproject.org/poky
-	branch: thud
+	branch: warrior
     
 	URI: git://git.openembedded.org/meta-openembedded
 	layers: meta-oe meta-networking meta-python
-	branch: thud
+	branch: warrior
 
 ## List of Radxa Boards supported <a name="list_of_boards_supported"></a>
 
