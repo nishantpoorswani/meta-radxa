@@ -1,0 +1,6 @@
+verbosity=7
+fdtfile=rk3308-rock-pi-s.dtb
+console=ttyFIQ0,1500000n8
+overlays=rk3308-console-on-uart2
+kernelimg=Image
+rootuuid=b921b045-1df0-41c3-af44-4c6f280d3fae
