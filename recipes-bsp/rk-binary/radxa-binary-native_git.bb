@@ -6,8 +6,9 @@ LICENSE = "BINARY"
 LIC_FILES_CHKSUM = "file://LICENSE.TXT;md5=564e729dd65db6f65f911ce0cd340cf9"
 NO_GENERIC_LICENSE[BINARY] = "LICENSE.TXT"
 
-SRC_URI = "git://github.com/nishantpoorswani/rkbin.git;branch=radxa;"
-SRCREV = "12a5a84d4c5c3d18bf22e3c44cc998d98c1b6994"
+SRC_URI = "git://github.com/radxa/rkbin.git;branch=master;"
+SRCREV = "fed51695bb1f60088ebddf32b3bd428d50e4d405"
+
 S = "${WORKDIR}/git"
 
 do_install () {

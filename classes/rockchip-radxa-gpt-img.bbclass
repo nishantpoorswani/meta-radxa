@@ -196,7 +196,7 @@ MINOR=0
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk3308_bl31_v2.21.elf
+PATH=radxa-binary/rk3308_bl31_v2.10.elf
 ADDR=0x00010000
 [BL32_OPTION]
 SEC=0
@@ -234,7 +234,7 @@ MINOR=2
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk322xh_bl31_v1.40.elf
+PATH=radxa-binary/rk322xh_bl31_v1.42.elf
 ADDR=0x10000
 [BL32_OPTION]
 SEC=0
@@ -273,7 +273,7 @@ MINOR=0
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk3399_bl31_v1.28.elf
+PATH=radxa-binary/rk3399_bl31_v1.26.elf
 ADDR=0x10000
 [BL32_OPTION]
 SEC=0

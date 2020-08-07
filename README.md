@@ -115,7 +115,7 @@ PACKAGECONFIG_append_pn-systemd = " resolved networkd"
 
 ## Serial Console <a name="serial_console"></a>
 
-The Serial Console on all 3 boards is enabled on UART-2.
+The Serial Console for RockPi-4 and RockPi-E is enabled on UART-2. The Serial Console for RockPi-S is enabled on UART-0.
 
 **Helpful Links:**
 
@@ -123,6 +123,8 @@ The Serial Console on all 3 boards is enabled on UART-2.
 + GPIO Pinout for RockPi-4 (https://wiki.radxa.com/Rockpi4/hardware/gpio)
 + GPIO Pinout for RockPi-E (https://wiki.radxa.com/RockpiE/hardware/rockpiE#gpio)
 + RockPi-4 Serial Console Setup (https://wiki.radxa.com/Rockpi4/dev/serial-console)
++ RockPi-S Serial Console Setup (https://wiki.radxa.com/RockpiS/dev/serial-console)
++ RockPi-E Serial Console Setup (https://wiki.radxa.com/RockpiE/dev/serial-console)
 
 ## Login Details <a name="login"></a>
 
@@ -292,6 +294,8 @@ hciconfig hci0 up
 + Firmware file location fixed for RockPi-E
 + Bluetooth works for RockPi-S, RockPi-E and RockPi-4
 + Added Bluetooth Connectivity section in README.md
++ RockPi-S serial console changed from UART-2 to UART-0
++ Radxa binaries are taken from the radxa official repository
 
 ## Contributing <a name="contributing"></a>
 
