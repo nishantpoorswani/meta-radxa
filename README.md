@@ -278,7 +278,7 @@ hciconfig hci0 up
 
 2. RockPi-4
 
-+ Kernel version: 4.4.154-95-d2ab1f26e1b33970a6ccda18633a681a7730665e
++ Kernel version: 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
 + U-Boot version: 2017.09-6d910b7f12318e5a5bb8d1b2093fe5a9ba17dfce
 
 3. RockPi-E
@@ -288,14 +288,7 @@ hciconfig hci0 up
 
 ## Change Log <a name="change_log"></a>
 
-+ RockPi-S Kernel updated to 4.4.143-39-daf243b9655a73ee14568e36cf76ac8a094e68e6
-+ RockPi-S U-Boot updated to 2017.09-c3d3bc84bef5ee95d7199c23e1a34e47ea8f0daf (Supports boot.cmd and uEnv.txt)
-+ RockPi-4 Kernel updated to 4.4.154-95-d2ab1f26e1b33970a6ccda18633a681a7730665e
-+ Firmware file location fixed for RockPi-E
-+ Bluetooth works for RockPi-S, RockPi-E and RockPi-4
-+ Added Bluetooth Connectivity section in README.md
-+ RockPi-S serial console changed from UART-2 to UART-0
-+ Radxa binaries are taken from the radxa official repository
++ RockPi-4 Kernel updated to 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
 
 ## Contributing <a name="contributing"></a>
 
