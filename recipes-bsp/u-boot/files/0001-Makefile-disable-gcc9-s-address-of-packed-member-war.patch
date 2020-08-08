@@ -1,0 +1,26 @@
+From 59dafb1ffcea607776ea645f8491e4348bfc02c4 Mon Sep 17 00:00:00 2001
+From: nishantpoorswani <nishantpoorswani@gmail.com>
+Date: Fri, 7 Aug 2020 22:31:01 +0530
+Subject: [PATCH] Makefile: disable gcc9's address-of-packed-member warning
+ error
+
+Signed-off-by: nishantpoorswani <nishantpoorswani@gmail.com>
+---
+ Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile b/Makefile
+index 7060da1c5f..16a2c76db7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -605,6 +605,7 @@ ifeq ($(shell $(CONFIG_SHELL) $(srctree)/scripts/gcc-stack-usage.sh $(CC)),y)
+ endif
+ 
+ KBUILD_CFLAGS += $(call cc-option,-Wno-format-nonliteral)
++KBUILD_CFLAGS += $(call cc-disable-warning, address-of-packed-member)
+ 
+ # turn jbsr into jsr for m68k
+ ifeq ($(ARCH),m68k)
+-- 
+2.26.2
+

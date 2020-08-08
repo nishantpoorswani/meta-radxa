@@ -11,6 +11,7 @@ DEPENDS = "dtc-native bc-native swig-native bison-native"
 SRC_URI = " \
 	git://github.com/radxa/u-boot.git;branch=stable-4.4-rockpis; \
 	file://0001-Use-local-command.h-file-instead-of-system-file.patch \
+	file://0001-Makefile-disable-gcc9-s-address-of-packed-member-war.patch \
 	file://rockpi-s/boot.cmd \
 	file://rockpi-s/uEnv.txt \
 "
