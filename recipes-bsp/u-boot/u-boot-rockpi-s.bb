@@ -15,7 +15,7 @@ SRC_URI = " \
 	file://rockpi-s/boot.cmd \
 	file://rockpi-s/uEnv.txt \
 "
-SRCREV = "c3d3bc84bef5ee95d7199c23e1a34e47ea8f0daf"
+SRCREV = "6de46245e680db858d74437dfd655dbf9600e48d"
 S = "${WORKDIR}/git"
 
 # u-boot will build native python module
