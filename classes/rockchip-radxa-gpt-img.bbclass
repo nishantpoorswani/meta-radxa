@@ -101,20 +101,44 @@ create_rk_image () {
 	BOOT_START=$(expr ${ATF_START} + ${ATF_SIZE})
 	ROOTFS_START=$(expr ${BOOT_START} + ${BOOT_SIZE})
 
-	parted -s ${GPTIMG} unit s mkpart loader1 ${LOADER1_START} $(expr ${RESERVED1_START} - 1)
-	# parted -s ${GPTIMG} unit s mkpart reserved1 ${RESERVED1_START} $(expr ${RESERVED2_START} - 1)
-	# parted -s ${GPTIMG} unit s mkpart reserved2 ${RESERVED2_START} $(expr ${LOADER2_START} - 1)
-	parted -s ${GPTIMG} unit s mkpart loader2 ${LOADER2_START} $(expr ${ATF_START} - 1)
-	parted -s ${GPTIMG} unit s mkpart trust ${ATF_START} $(expr ${BOOT_START} - 1)
+ 	# Make 5 partitions only for rocki-4b 
+	if [ "${SOC_FAMILY}" = "rk3399" ]; then
+
+		parted -s ${GPTIMG} unit s mkpart loader1 ${LOADER1_START} $(expr ${RESERVED1_START} - 1)
+		# parted -s ${GPTIMG} unit s mkpart reserved1 ${RESERVED1_START} $(expr ${RESERVED2_START} - 1)
+		# parted -s ${GPTIMG} unit s mkpart reserved2 ${RESERVED2_START} $(expr ${LOADER2_START} - 1)
+		parted -s ${GPTIMG} unit s mkpart loader2 ${LOADER2_START} $(expr ${ATF_START} - 1)
+		parted -s ${GPTIMG} unit s mkpart trust ${ATF_START} $(expr ${BOOT_START} - 1)	
+		BOOT_PART=4
+		ROOT_PART=5
+	else
+		BOOT_PART=1
+		ROOT_PART=2
+	fi
 
 	# Create boot partition and mark it as bootable
 	parted -s ${GPTIMG} unit s mkpart boot ${BOOT_START} $(expr ${ROOTFS_START} - 1)
-	parted -s ${GPTIMG} set 4 boot on
+	parted -s ${GPTIMG} set ${BOOT_PART} boot on
 
 	# Create rootfs partition
 	parted -s ${GPTIMG} -- unit s mkpart rootfs ${ROOTFS_START} -34s
 
 	parted ${GPTIMG} print
+
+	# mark the boot partition as UEFI boot
+	BOOT_UUID="C12A7328-F81F-11D2-BA4B-00A0C93EC93B"
+
+	# Change boot partuuid
+	gdisk ${GPTIMG} <<EOF
+x
+c
+${BOOT_PART}
+${BOOT_UUID}
+w
+y
+EOF
+
+	# the root partition is always this, because aarch64
 
 	ROOT_UUID="B921B045-1DF0-41C3-AF44-4C6F280D3FAE"
 
@@ -122,7 +146,7 @@ create_rk_image () {
 	gdisk ${GPTIMG} <<EOF
 x
 c
-5
+${ROOT_PART}
 ${ROOT_UUID}
 w
 y
@@ -131,7 +155,7 @@ EOF
 	# Delete the boot image to avoid trouble with the build cache
 	rm -f ${WORKDIR}/${BOOT_IMG}
 	# Create boot partition image
-	BOOT_BLOCKS=$(LC_ALL=C parted -s ${GPTIMG} unit b print | awk '/ 4 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
+	BOOT_BLOCKS=$(LC_ALL=C parted -s ${GPTIMG} unit b print | awk "/ ${BOOT_PART} / { print substr(\$4, 1, length(\$4 -1)) / 512 /2 }")
 	BOOT_BLOCKS=$(expr $BOOT_BLOCKS / 63 \* 63)
 
 	mkfs.vfat -n "boot" -S 512 -C ${WORKDIR}/${BOOT_IMG} $BOOT_BLOCKS
