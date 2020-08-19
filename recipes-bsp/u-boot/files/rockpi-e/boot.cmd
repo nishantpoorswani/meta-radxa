@@ -15,7 +15,7 @@ setenv docker_optimizations "on"
 echo "Boot script loaded from ${devtype} ${devnum}"
 
 if test -e ${devtype} ${devnum}:1 ${prefix}uEnv.txt; then
-	load ${devtype} ${devnum}1 ${load_addr} ${prefix}uEnv.txt
+	load ${devtype} ${devnum}:1 ${load_addr} ${prefix}uEnv.txt
 	env import -t ${load_addr} ${filesize}
 fi
 
