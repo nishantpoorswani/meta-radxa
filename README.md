@@ -289,6 +289,10 @@ hciconfig hci0 up
 ## Change Log <a name="change_log"></a>
 
 + RockPi-4 Kernel updated to 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
++ RockPi-S Kernel updated to 4.4.143-48-eacd15ae244fe1bb69be8dfc0f37f06acd4ea624 
++ RockPi-S U-Boot updated to 2017.09-6de46245e680db858d74437dfd655dbf9600e48d
++ RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
++ Use ttySx as debuger console instead of ttyFIQ0 for RockPi-S and RockPi-E
 
 ## Contributing <a name="contributing"></a>
 
