@@ -1,4 +1,4 @@
-DESCRIPTION = "Linux kernel for RockPi-4b"
+DESCRIPTION = "Linux kernel for RockPi-4"
 
 require recipes-kernel/linux/linux-yocto.inc
 
@@ -27,6 +27,6 @@ do_compile_append() {
 
 do_deploy_append() {
 	install -d ${DEPLOYDIR}/overlays
-	install -m 644 ${WORKDIR}/linux-rockpi_4b_rk3399-standard-build/arch/arm64/boot/dts/rockchip/overlays-rockpi4/* ${DEPLOYDIR}/overlays
+	install -m 644 ${WORKDIR}/linux-rockpi_4*/arch/arm64/boot/dts/rockchip/overlays-rockpi4/* ${DEPLOYDIR}/overlays
 	install -m 644 ${S}/arch/arm64/boot/dts/rockchip/overlays-rockpi4/hw_intfc.conf ${DEPLOYDIR}/
 }
