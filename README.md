@@ -40,9 +40,11 @@ The meta-radxa layer depends on:
 
 ## List of Radxa Boards supported <a name="list_of_boards_supported"></a>
 
-1) RockPi-S
-2) RockPi-4 (Community Tested)
-3) RockPi-E
+1) RockPi-4A (Tested by Stephen Chan from Radxa Team)
+2) RockPi-4B (Tested by Stephen Chan from Radxa Team)
+3) RockPi-4C (Tested by Stephen Chan from Radxa Team)
+4) RockPi-E
+5) RockPi-S
 
 ## Using the meta-radxa layer <a name="meta_radxa_usage"></a>
 
@@ -119,12 +121,12 @@ The Serial Console for RockPi-4 and RockPi-E is enabled on UART-2. The Serial Co
 
 **Helpful Links:**
 
-+ GPIO Pinout for RockPi-S (https://wiki.radxa.com/RockpiS/hardware/gpio)
 + GPIO Pinout for RockPi-4 (https://wiki.radxa.com/Rockpi4/hardware/gpio)
 + GPIO Pinout for RockPi-E (https://wiki.radxa.com/RockpiE/hardware/rockpiE#gpio)
++ GPIO Pinout for RockPi-S (https://wiki.radxa.com/RockpiS/hardware/gpio)
 + RockPi-4 Serial Console Setup (https://wiki.radxa.com/Rockpi4/dev/serial-console)
-+ RockPi-S Serial Console Setup (https://wiki.radxa.com/RockpiS/dev/serial-console)
 + RockPi-E Serial Console Setup (https://wiki.radxa.com/RockpiE/dev/serial-console)
++ RockPi-S Serial Console Setup (https://wiki.radxa.com/RockpiS/dev/serial-console)
 
 ## Login Details <a name="login"></a>
 
@@ -183,15 +185,13 @@ nmcli dev wifi connect "SSID" password "PASSWORD"
 
 ### Bluetooth Connectivity <a name="bluetooth"></a>
 
-+ Bluetooth on RockPi-S
++ Bluetooth on RockPi-4B/RockPi-4C
 
 **Manual setup for bluetooth:**
 
 ```
-echo 0 > /sys/class/rfkill/rfkill0/state
-echo 1 > /sys/class/rfkill/rfkill0/state
-insmod /lib/modules/4.4.143/kernel/drivers/bluetooth/hci_uart.ko
-rtk_hciattach -n -s 115200 /dev/ttyS4 rtk_h5 &
+rfkill block bluetooth
+/usr/bin/brcm_patchram_plus -d --enable_hci --no2bytes --use_baudrate_for_downloade --tosleep 200000 --baudrate 1500000 --patchram /system/etc/firmware/BCM4345C5.hcd /dev/ttyS0 > /dev/null 2>&1 &
 hciconfig hci0 up
 ```
 
@@ -200,10 +200,10 @@ hciconfig hci0 up
 ```
  $ hciconfig
  hci0:   Type: Primary  Bus: UART
-         BD Address: 22:22:70:B2:10:6F  ACL MTU: 1021:8  SCO MTU: 255:12
+         BD Address: 43:45:C5:00:1F:AC  ACL MTU: 1021:8  SCO MTU: 64:1
          UP RUNNING 
-         RX bytes:1399 acl:0 sco:0 events:45 errors:0
-         TX bytes:3458 acl:0 sco:0 commands:45 errors:0
+         RX bytes:876 acl:0 sco:0 events:62 errors:0
+         TX bytes:4755 acl:0 sco:0 commands:62 errors:0
 ```
 
 + Bluetooth on RockPi-E
@@ -248,13 +248,15 @@ If the Wifi/bt chip is RTL8821CU use the commands given below:
          TX bytes:216782 acl:379 sco:0 commands:101 errors:0
 ```
 
-+ Bluetooth on RockPi-4
++ Bluetooth on RockPi-S
 
 **Manual setup for bluetooth:**
 
 ```
-rfkill block bluetooth
-/usr/bin/brcm_patchram_plus -d --enable_hci --no2bytes --use_baudrate_for_downloade --tosleep 200000 --baudrate 1500000 --patchram /system/etc/firmware/BCM4345C5.hcd /dev/ttyS0 > /dev/null 2>&1 &
+echo 0 > /sys/class/rfkill/rfkill0/state
+echo 1 > /sys/class/rfkill/rfkill0/state
+insmod /lib/modules/4.4.143/kernel/drivers/bluetooth/hci_uart.ko
+rtk_hciattach -n -s 115200 /dev/ttyS4 rtk_h5 &
 hciconfig hci0 up
 ```
 
@@ -263,32 +265,36 @@ hciconfig hci0 up
 ```
  $ hciconfig
  hci0:   Type: Primary  Bus: UART
-         BD Address: 43:45:C5:00:1F:AC  ACL MTU: 1021:8  SCO MTU: 64:1
+         BD Address: 22:22:70:B2:10:6F  ACL MTU: 1021:8  SCO MTU: 255:12
          UP RUNNING 
-         RX bytes:876 acl:0 sco:0 events:62 errors:0
-         TX bytes:4755 acl:0 sco:0 commands:62 errors:0
+         RX bytes:1399 acl:0 sco:0 events:45 errors:0
+         TX bytes:3458 acl:0 sco:0 commands:45 errors:0
 ```
 
 ## Release Info <a name="release_info"></a>
 
-1. RockPi-S
-
-+ Kernel version: 4.4.143-39-daf243b9655a73ee14568e36cf76ac8a094e68e6
-+ U-Boot version: 2017.09-c3d3bc84bef5ee95d7199c23e1a34e47ea8f0daf
-
-2. RockPi-4
+1. RockPi-4
 
 + Kernel version: 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
-+ U-Boot version: 2017.09-6d910b7f12318e5a5bb8d1b2093fe5a9ba17dfce
++ U-Boot version: 2017.09-04d66f4b45a47531b5ff6cdbddcdc2cc35fa7aea
 
-3. RockPi-E
+2. RockPi-E
 
 + Kernel version: 4.4.194-12-615ae743115011bbe1cd1edc5c9118bf95527f54
 + U-Boot version: 2019.10-7b93f1b8bce4106266d4a38dde96fd8080faccea
 
+3. RockPi-S
+
++ Kernel version: 4.4.143-48-eacd15ae244fe1bb69be8dfc0f37f06acd4ea624
++ U-Boot version: 2017.09-6de46245e680db858d74437dfd655dbf9600e48d
+
 ## Change Log <a name="change_log"></a>
 
++ Added board support for RockPi-4A
++ Added board support for RockPi-4B
 + RockPi-4 Kernel updated to 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
++ RockPi-4 U-Boot branch updated from stable-4.4-rockpi4 to rk3399-pie-gms-express-baseline
++ RockPi-4 U-Boot updated to 2017.09-04d66f4b45a47531b5ff6cdbddcdc2cc35fa7aea
 + RockPi-S Kernel updated to 4.4.143-48-eacd15ae244fe1bb69be8dfc0f37f06acd4ea624 
 + RockPi-S U-Boot updated to 2017.09-6de46245e680db858d74437dfd655dbf9600e48d
 + RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
