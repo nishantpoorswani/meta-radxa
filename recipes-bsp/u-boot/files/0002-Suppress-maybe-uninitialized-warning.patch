@@ -1,0 +1,25 @@
+From f730bf4efe2c7889d809d3b423225f636d3ee7a2 Mon Sep 17 00:00:00 2001
+From: nishantpoorswani <nishantpoorswani@gmail.com>
+Date: Sat, 22 Aug 2020 12:47:17 +0530
+Subject: [PATCH] Suppress maybe-uninitialized warning
+
+Signed-off-by: nishantpoorswani <nishantpoorswani@gmail.com>
+---
+ Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile b/Makefile
+index c51e37149a..24f1921254 100644
+--- a/Makefile
++++ b/Makefile
+@@ -606,6 +606,7 @@ endif
+ 
+ KBUILD_CFLAGS += $(call cc-option,-Wno-format-nonliteral)
+ KBUILD_CFLAGS += $(call cc-disable-warning, address-of-packed-member)
++KBUILD_CFLAGS += $(call cc-disable-warning, maybe-uninitialized)
+ 
+ # turn jbsr into jsr for m68k
+ ifeq ($(ARCH),m68k)
+-- 
+2.26.2
+
