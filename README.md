@@ -296,10 +296,11 @@ hciconfig hci0 up
 + RockPi-4 U-Boot branch updated from stable-4.4-rockpi4 to rk3399-pie-gms-express-baseline
 + RockPi-4 U-Boot updated to 2017.09-04d66f4b45a47531b5ff6cdbddcdc2cc35fa7aea
 + RockPi-4 boards support SPI + NVME booting
-+ RockPi-S Kernel updated to 4.4.143-48-eacd15ae244fe1bb69be8dfc0f37f06acd4ea624 
-+ RockPi-S U-Boot updated to 2017.09-6de46245e680db858d74437dfd655dbf9600e48d
++ RockPi-S Kernel updated to 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41 
++ RockPi-S U-Boot updated to 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
 + RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
 + Use ttySx as debuger console instead of ttyFIQ0 for RockPi-S and RockPi-E
++ Major Reorganization in U-Boot recipes. New structure will make it easier for adding new boards
 
 ## Contributing <a name="contributing"></a>
 
