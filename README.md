@@ -285,8 +285,8 @@ hciconfig hci0 up
 
 3. RockPi-S
 
-+ Kernel version: 4.4.143-48-eacd15ae244fe1bb69be8dfc0f37f06acd4ea624
-+ U-Boot version: 2017.09-6de46245e680db858d74437dfd655dbf9600e48d
++ Kernel version: 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41
++ U-Boot version: 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
 
 ## Change Log <a name="change_log"></a>
 
