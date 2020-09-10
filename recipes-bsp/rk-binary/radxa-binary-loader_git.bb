@@ -7,22 +7,26 @@ NO_GENERIC_LICENSE[BINARY] = "LICENSE.TXT"
 DEPENDS = "radxa-binary-native"
 
 SRC_URI = "git://github.com/radxa/rkbin.git;branch=master;"
-SRCREV = "fed51695bb1f60088ebddf32b3bd428d50e4d405"
+SRCREV = "fb4ce829b87a9a5738ff6ebc9951768c86ad75c1"
 
 S = "${WORKDIR}/git"
 
+LOADER_px30 ?= "bin/rk33/px30_loader_v1.14.120.bin"
 LOADER_rk3308 ?= "bin/rk33/rk3308_loader_uart0_m0_emmc_port_support_sd_20190717.bin"
 LOADER_rk3328 ?= "bin/rk33/rk3328_loader_ddr333_v1.16.250.bin"
 LOADER_rk3399 ?= "bin/rk33/rk3399_loader_v1.12.112.bin"
 
+MINILOADER_px30 ?= "bin/rk33/px30_miniloader_v1.20.bin"
 MINILOADER_rk3308 ?= "bin/rk33/rk3308_miniloader_emmc_port_support_sd_20190717.bin"
 MINILOADER_rk3328 ?= "bin/rk33/rk322xh_miniloader_v2.50.bin"
 MINILOADER_rk3399 ?= "bin/rk33/rk3399_miniloader_v1.19.bin"
 
+DDR_px30 ?= "bin/rk33/px30_ddr_333MHz_v1.14.bin"
 DDR_rk3308 ?= "bin/rk33/rk3308_ddr_589MHz_uart0_m0_v1.26.bin"
 DDR_rk3328 ?= "bin/rk33/rk3328_ddr_333MHz_v1.16.bin"
 DDR_rk3399 ?= "bin/rk33/rk3399_ddr_800MHz_v1.20.bin"
 
+BL31_px30 ?= "bin/rk33/px30_bl31_v1.18.elf"
 BL31_rk3308 ?= "bin/rk33/rk3308_bl31_v2.10.elf"
 BL31_rk3328 ?= "bin/rk33/rk322xh_bl31_v1.42.elf"
 BL31_rk3399 ?= "bin/rk33/rk3399_bl31_v1.26.elf"

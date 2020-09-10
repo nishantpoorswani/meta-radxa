@@ -2,7 +2,7 @@ require recipes-bsp/u-boot/u-boot.inc
 
 HOMEPAGE = "https://github.com/radxa/u-boot"
 LICENSE = "GPLv2+"
-COMPATIBLE_MACHINE = "(rk3036|rk3066|rk3188|rk3288|rk3328|rk3399|rk3308)"
+COMPATIBLE_MACHINE = "(px30|rk3036|rk3066|rk3188|rk3288|rk3328|rk3399|rk3308)"
 SECTION = "bootloaders"
 DEPENDS = "dtc-native bc-native swig-native bison-native"
 
