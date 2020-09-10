@@ -1,0 +1,5 @@
+verbosity=7
+fdtfile=px30-rock-pi.dtb
+console=ttyS1,1500000n8
+kernelimg=Image
+rootuuid=b921b045-1df0-41c3-af44-4c6f280d3fae
