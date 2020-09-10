@@ -22,6 +22,8 @@ TRUST_IMG = "trust.img"
 # Not from radxa-binary
 UBOOT_IMG = "u-boot.img"
 
+GPTIMG_APPEND_px30 = "console=tty1 console=ttyS1,1500000n8 rw \
+	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
 GPTIMG_APPEND_rk3308 = "console=tty1 console=ttyFIQ0,1500000n8 rw \
 	root=PARTUUID=b921b045-1d rootfstype=ext4 init=/sbin/init rootwait"
 GPTIMG_APPEND_rk3328 = "console=tty1 console=ttyS2,1500000n8 rw \
@@ -53,6 +55,7 @@ do_image_rockchip_radxa_gpt_img[depends] += " \
 	virtual/kernel:do_deploy \
 	virtual/bootloader:do_deploy"
 
+PER_CHIP_IMG_GENERATION_COMMAND_px30 = "generate_px30_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3308 = "generate_rk3308_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3328 = "generate_rk3328_loader_image"
 PER_CHIP_IMG_GENERATION_COMMAND_rk3399 = "generate_rk3399_loader_image"
@@ -196,6 +199,44 @@ EOF
 	# Burn Rootfs Partition
 	dd if=${IMG_ROOTFS} of=${GPTIMG} conv=notrunc,fsync seek=${ROOTFS_START}
 
+}
+
+generate_px30_loader_image () {
+	LOADER1_START=64
+	RESERVED1_START=$(expr ${LOADER1_START} + ${LOADER1_SIZE})
+	RESERVED2_START=$(expr ${RESERVED1_START} + ${RESERVED1_SIZE})
+	LOADER2_START=$(expr ${RESERVED2_START} + ${RESERVED2_SIZE})
+	ATF_START=$(expr ${LOADER2_START} + ${LOADER2_SIZE})
+	BOOT_START=$(expr ${ATF_START} + ${ATF_SIZE})
+	ROOTFS_START=$(expr ${BOOT_START} + ${BOOT_SIZE})
+
+	# Burn bootloader
+	loaderimage --pack --uboot ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin ${DEPLOY_DIR_IMAGE}/${UBOOT_IMG} 0x200000 --size 1024 1
+
+	${DEPLOY_DIR_IMAGE}/mkimage -n ${SOC_FAMILY} -T rksd -d ${DEPLOY_DIR_IMAGE}/${DDR_BIN} ${DEPLOY_DIR_IMAGE}/${IDBLOADER}
+	cat ${DEPLOY_DIR_IMAGE}/${MINILOADER_BIN} >>${DEPLOY_DIR_IMAGE}/${IDBLOADER}
+	cat >${DEPLOY_DIR_IMAGE}/trust.ini <<EOF
+[VERSION]
+MAJOR=1
+MINOR=0
+[BL30_OPTION]
+SEC=0
+[BL31_OPTION]
+SEC=1
+PATH=radxa-binary/px30_bl31_v1.18.elf
+ADDR=0x00010000
+[BL32_OPTION]
+SEC=0
+[BL33_OPTION]
+SEC=0
+[OUTPUT]
+PATH=trust.img
+EOF
+	trust_merger --size 1024 1 ${DEPLOY_DIR_IMAGE}/trust.ini
+
+	dd if=${DEPLOY_DIR_IMAGE}/${IDBLOADER} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER1_START}
+	dd if=${DEPLOY_DIR_IMAGE}/${UBOOT_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${LOADER2_START}
+	dd if=${DEPLOY_DIR_IMAGE}/${TRUST_IMG} of=${GPTIMG} conv=notrunc,fsync seek=${ATF_START}
 }
 
 generate_rk3308_loader_image () {
