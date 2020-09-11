@@ -1,3 +1,5 @@
+# u-boot.inc from openembedded-core/meta repository, zeus branch
+# SDX-License-Identifier: MIT
 SUMMARY = "Universal Boot Loader for embedded devices"
 PROVIDES = "virtual/bootloader"
 
