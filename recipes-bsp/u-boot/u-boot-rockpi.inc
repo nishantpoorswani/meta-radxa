@@ -1,4 +1,4 @@
-require recipes-bsp/u-boot/u-boot.inc
+require u-boot-zeus.inc
 
 HOMEPAGE = "https://github.com/radxa/u-boot"
 LICENSE = "GPLv2+"
@@ -8,9 +8,6 @@ DEPENDS = "dtc-native bc-native swig-native bison-native"
 
 S = "${WORKDIR}/git"
 
-# u-boot will build native python module
-inherit pythonnative
-
 do_configure () {
     if [ -z "${UBOOT_CONFIG}" ]; then
         if [ -n "${UBOOT_MACHINE}" ]; then
@@ -18,7 +15,7 @@ do_configure () {
         else
             oe_runmake -C ${S} O=${B} oldconfig
         fi
-	echo ${PWD}
+        echo ${PWD}
         ${S}/scripts/kconfig/merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
         cml1_do_configure
     fi

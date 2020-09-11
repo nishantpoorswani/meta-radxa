@@ -4,7 +4,7 @@ IMAGE_FEATURES += "splash"
 
 LICENSE = "MIT"
 
-inherit core-image distro_features_check extrausers
+inherit core-image features_check extrausers
 
 # let's make sure we have a good image..
 REQUIRED_DISTRO_FEATURES = "pam systemd"
