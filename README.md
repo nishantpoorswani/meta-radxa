@@ -44,7 +44,8 @@ The meta-radxa layer depends on:
 2) RockPi-4B (Tested by Stephen Chan from Radxa Team)
 3) RockPi-4C (Tested by Stephen Chan from Radxa Team)
 4) RockPi-E
-5) RockPi-S
+5) RockPi-PX30
+6) RockPi-S
 
 ## Using the meta-radxa layer <a name="meta_radxa_usage"></a>
 
@@ -283,13 +284,19 @@ hciconfig hci0 up
 + Kernel version: 4.4.194-12-615ae743115011bbe1cd1edc5c9118bf95527f54
 + U-Boot version: 2019.10-7b93f1b8bce4106266d4a38dde96fd8080faccea
 
-3. RockPi-S
+3. RockPi-PX30
+
++ Kernel version: 4.4.189-dc47906e88166ae315f0472743de4d80f2bea786
++ U-Boot version: 2017.09-cfc37de87bc064b2d6d384566e24c5e4245f113a
+
+4. RockPi-S
 
 + Kernel version: 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41
 + U-Boot version: 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
 
 ## Change Log <a name="change_log"></a>
 
++ Added board support for RockPi-PX30
 + Added board support for RockPi-4A
 + Added board support for RockPi-4B
 + RockPi-4 Kernel updated to 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
