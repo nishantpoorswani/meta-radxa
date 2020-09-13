@@ -1,0 +1,11 @@
+[Unit]
+Description=Load Realtek Bluetooth Driver and Firmware
+Documentation=https://wiki.radxa.com/Template:Rockpi_apt
+Requires=bluetooth.service
+After=bluetooth.service
+[Service]
+Type=oneshot
+ExecStart=-/usr/local/bin/realtek-btfw-load.sh start
+StandardOutput=null
+[Install]
+WantedBy=multi-user.target
