@@ -32,11 +32,11 @@ The OpenEmbedded/Yocto Project BSP layer for the Radxa machines
 The meta-radxa layer depends on:
 
 	URI: git://git.yoctoproject.org/poky
-	branch: zeus
-    
+	branch: dunfell
+
 	URI: git://git.openembedded.org/meta-openembedded
 	layers: meta-oe meta-networking meta-python
-	branch: zeus
+	branch: dunfell
 
 ## List of Radxa Boards supported <a name="list_of_boards_supported"></a>
 
@@ -55,10 +55,10 @@ Fetch the source using the commands given below:
 
 <pre><code>~ $ mkdir yocto
 ~ $ cd yocto
-~/yocto $ git clone git://git.yoctoproject.org/poky -b zeus
+~/yocto $ git clone git://git.yoctoproject.org/poky -b dunfell
 ~/yocto $ cd poky
-~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b zeus
-~/yocto/poky $ git clone https://github.com/nishantpoorswani/meta-radxa.git -b zeus
+~/yocto/poky $ git clone git://git.openembedded.org/meta-openembedded.git -b dunfell
+~/yocto/poky $ git clone https://github.com/nishantpoorswani/meta-radxa.git -b dunfell
 </code></pre>
 
 ### Step 2: Setting up the Environment <a name="setup"></a>
