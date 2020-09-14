@@ -1,0 +1,13 @@
+[Unit]
+Description=Install HCI UART Module
+Before=rtl8723ds-btfw-load.service
+[Service]
+Type=oneshot
+#ExecStartPre=
+ExecStart=/usr/bin/install_module_hci_uart
+#ExecStartPost=
+#Restart=on-failure
+#RestartSec=2
+#StandardOutput=null
+[Install]
+WantedBy=multi-user.target

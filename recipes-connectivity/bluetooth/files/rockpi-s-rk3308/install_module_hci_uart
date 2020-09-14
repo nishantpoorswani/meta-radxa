@@ -1,0 +1,5 @@
+#!/bin/sh
+
+version=`uname -r`
+insmod /lib/modules/${version}/kernel/drivers/bluetooth/hci_uart.ko
+echo "install hci_uart.ko"

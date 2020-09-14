@@ -1,0 +1,14 @@
+[Unit]
+Description=Load RTL8723DS Bluetooth firmware
+Requires=bluetooth.service install-module-hci-uart.service
+After=bluetooth.service install-module-hci-uart.service
+[Service]
+#Type=forking
+#ExecStartPre=/usr/sbin/rfkill block bluetooth
+ExecStartPre=/usr/sbin/rfkill unblock bluetooth
+ExecStart=/usr/bin/rtk_hciattach -n -s 115200 /dev/ttyS4 rtk_h5 &
+#Restart=on-failure
+#RestartSec=2
+#StandardOutput=null
+[Install]
+WantedBy=multi-user.target
