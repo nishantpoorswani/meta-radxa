@@ -18,6 +18,7 @@ DDR_BIN = "radxa-binary/ddr.bin"
 LOADER_BIN = "radxa-binary/loader.bin"
 MINILOADER_BIN = "radxa-binary/miniloader.bin"
 ATF_BIN = "radxa-binary/atf.bin"
+BL31_ELF = "radxa-binary/bl31.elf"
 TRUST_IMG = "trust.img"
 # Not from radxa-binary
 UBOOT_IMG = "u-boot.img"
@@ -223,7 +224,7 @@ MINOR=0
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/px30_bl31_v1.18.elf
+PATH=${BL31_ELF}
 ADDR=0x00010000
 [BL32_OPTION]
 SEC=0
@@ -261,7 +262,7 @@ MINOR=0
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk3308_bl31_v2.10.elf
+PATH=${BL31_ELF}
 ADDR=0x00010000
 [BL32_OPTION]
 SEC=0
@@ -299,7 +300,7 @@ MINOR=2
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk322xh_bl31_v1.42.elf
+PATH=${BL31_ELF}
 ADDR=0x10000
 [BL32_OPTION]
 SEC=0
@@ -338,7 +339,7 @@ MINOR=0
 SEC=0
 [BL31_OPTION]
 SEC=1
-PATH=radxa-binary/rk3399_bl31_v1.26.elf
+PATH=${BL31_ELF}
 ADDR=0x10000
 [BL32_OPTION]
 SEC=0
