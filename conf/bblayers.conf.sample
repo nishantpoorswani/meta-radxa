@@ -12,5 +12,8 @@ BBLAYERS ?= " \
   ${TOPDIR}/../meta-openembedded/meta-oe \
   ${TOPDIR}/../meta-openembedded/meta-networking \
   ${TOPDIR}/../meta-openembedded/meta-python \
+  ${TOPDIR}/../meta-openembedded/meta-multimedia \ 
+  ${TOPDIR}/../meta-openembedded/meta-gnome \
+  ${TOPDIR}/../meta-openembedded/meta-xfce \
   ${TOPDIR}/../meta-radxa \
   "

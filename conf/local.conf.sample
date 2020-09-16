@@ -96,6 +96,7 @@ BB_DISKMON_DIRS ??= "\
 # this doesn't mean anything to you.
 CONF_VERSION = "1"
 
-DISTRO_FEATURES_append = " pam systemd"
+DISTRO_FEATURES_append = " pam systemd x11"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 PACKAGECONFIG_append_pn-systemd = " resolved networkd"
+DISTRO_FEATURES_remove = "wayland"
