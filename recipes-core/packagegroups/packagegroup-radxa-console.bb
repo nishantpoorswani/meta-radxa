@@ -5,7 +5,7 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 inherit packagegroup
 
 # contains basic dependencies, that can work without graphics/display
-RDEPENDS_packagegroup-radxa = "\
+RDEPENDS_packagegroup-radxa-console = "\
     alsa-utils-aplay \
     coreutils \
     cpufrequtils \
@@ -17,4 +17,5 @@ RDEPENDS_packagegroup-radxa = "\
     networkmanager-nmtui \
     openssh-sftp-server \
     bluez5 \
+    dialog \
     "
