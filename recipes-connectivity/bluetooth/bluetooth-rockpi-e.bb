@@ -6,9 +6,12 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 SRC_URI = " \
-	file://${MACHINE}/realtek-btfw-load.service \
-	file://${MACHINE}/realtek-btfw-load.sh \
+	file://${MACHINE}/realtek-btfw-load.service;name=btfw-rockpie-service \
+	file://${MACHINE}/realtek-btfw-load.sh;name=btfw-rockpie-script \
 "
+
+SRC_URI[btfw-rockpie-service.md5sum] = "7f5d318c7213d84a59f0884986334f6b"
+SRC_URI[btfw-rockpie-script.md5sum] = "577b213e71835e45365fe87b1da7000c"
 
 S = "${WORKDIR}"
 
