@@ -35,7 +35,7 @@ The meta-radxa layer depends on:
 	branch: zeus
     
 	URI: git://git.openembedded.org/meta-openembedded
-	layers: meta-oe meta-networking meta-python
+	layers: meta-oe meta-networking meta-python meta-multimedia meta-gnome meta-xfce
 	branch: zeus
 
 ## List of Radxa Boards supported <a name="list_of_boards_supported"></a>
@@ -80,6 +80,9 @@ Fetch the source using the commands given below:
   ${TOPDIR}/../meta-openembedded/meta-oe \
   ${TOPDIR}/../meta-openembedded/meta-networking \
   ${TOPDIR}/../meta-openembedded/meta-python \
+  ${TOPDIR}/../meta-openembedded/meta-multimedia \ 
+  ${TOPDIR}/../meta-openembedded/meta-gnome \
+  ${TOPDIR}/../meta-openembedded/meta-xfce \
   ${TOPDIR}/../meta-radxa \
 </code></pre>
 
@@ -93,9 +96,10 @@ Fetch the source using the commands given below:
 
 ```
 MACHINE ?= "xxxx"
-DISTRO_FEATURES_append = " pam systemd"
+DISTRO_FEATURES_append = " pam systemd x11"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 PACKAGECONFIG_append_pn-systemd = " resolved networkd"
+DISTRO_FEATURES_remove = "wayland"
 ```
 
 **Replace xxxx with the machine you want to build the image for. All supported machines can be found in meta-radxa/conf/machine.**
@@ -112,6 +116,13 @@ PACKAGECONFIG_append_pn-systemd = " resolved networkd"
 
 ```
 ~/yocto/poky/build $ bitbake -k radxa-console-image
+```
+<div align="center"><b>OR</b></div>
+
+* If you wish to build a desktop image use the command given below:
+
+```
+~/yocto/poky/build $ bitbake -k radxa-desktop-image
 ```
 
 **At the end of a successful build, you should have a gpt.img image in build/tmp/deploy/images/MACHINE/ folder. The gpt.img can be directly flashed on the sd-card**
@@ -308,6 +319,8 @@ hciconfig hci0 up
 + RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
 + Use ttySx as debuger console instead of ttyFIQ0 for RockPi-S and RockPi-E
 + Major Reorganization in U-Boot recipes. New structure will make it easier for adding new boards
++ Added recipe for making desktop images
++ Added recipe for setting up BT firmware and driver at boot for RockPi-S and RockPi-E
 
 ## Contributing <a name="contributing"></a>
 
