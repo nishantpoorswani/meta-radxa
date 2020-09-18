@@ -1,0 +1,16 @@
+[Unit]
+Description=Load Broadcom Bluetooth firmware
+#Requires=display-manager.service
+After=display-manager.service
+[Service]
+#Type=dbus
+#blkusName=org.bluez
+#ExecStartPre=/usr/sbin/rfkill block bluetooth
+ExecStartPre=/usr/sbin/rfkill unblock bluetooth
+ExecStart=/usr/bin/brcm_patchram_plus --bd_addr_rand --enable_hci --no2bytes --use_baudrate_for_downloade --tosleep 200000 --baudrate 1500000 --patchram /system/etc/firmware/BCM4345C5.hcd /dev/ttyS0 > /dev/null 2>&1 &
+ExecStop=/usr/bin/killall brcm_patchram_plus
+Restart=on-failure
+RestartSec=2
+StandardOutput=null
+[Install]
+WantedBy=multi-user.target
