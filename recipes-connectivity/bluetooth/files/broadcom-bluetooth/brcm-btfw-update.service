@@ -1,0 +1,7 @@
+[Unit]
+Description=Set device and firmware for Broadcom Bluetooth
+Before=broadcom-btfw-load.service
+[Service]
+ExecStart=/usr/bin/update-brcm-btfw-load-service.sh
+[Install]
+WantedBy=multi-user.target
