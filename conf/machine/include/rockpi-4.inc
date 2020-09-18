@@ -15,10 +15,8 @@ KBUILD_DEFCONFIG = "rockchip_linux_defconfig"
 PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-rockpi-4"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "\
-   kernel-modules \   
-   brcm-tools \
-   rkwifibt-firmware-ap6256-wifi \
-   rkwifibt-firmware-ap6256-bt \
+   kernel-modules \
 "
+
 IMAGE_FSTYPES += "rockchip-radxa-gpt-img"
 IMAGE_CLASSES += "rockchip-radxa-gpt-img"
