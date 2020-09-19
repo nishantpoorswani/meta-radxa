@@ -16,6 +16,7 @@ PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot-rockpi-4"
 
 MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "\
    kernel-modules \
+   resize-helper \
 "
 
 IMAGE_FSTYPES += "rockchip-radxa-gpt-img"
