@@ -1,0 +1,26 @@
+From e93b0c4f9ebee1043104f0d68efe9abd682fa708 Mon Sep 17 00:00:00 2001
+From: Stephen <stephen@vamrs.com>
+Date: Mon, 21 Sep 2020 15:07:15 +0800
+Subject: [PATCH] Makefile: disable gcc9's address-of-packed-member warning
+ error
+
+Signed-off-by: Stephen <stephen@vamrs.com>
+---
+ Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile b/Makefile
+index 6246746..71fd6a5 100644
+--- a/Makefile
++++ b/Makefile
+@@ -671,6 +671,7 @@ KBUILD_CFLAGS	+= $(call cc-disable-warning, format-truncation)
+ KBUILD_CFLAGS	+= $(call cc-disable-warning, format-overflow)
+ KBUILD_CFLAGS	+= $(call cc-disable-warning, int-in-bool-context)
+ KBUILD_CFLAGS	+= $(call cc-disable-warning, attribute-alias)
++KBUILD_CFLAGS	+= $(call cc-disable-warning, address-of-packed-member)
+ 
+ ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
+ KBUILD_CFLAGS	+= $(call cc-option,-Oz,-Os)
+-- 
+2.7.4
+
