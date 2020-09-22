@@ -1,0 +1,6 @@
+verbosity=7
+fdtfile=rk3399pro-rockpi-n10-linux.dtb
+console=ttyS2,1500000n8
+overlays=rk3399pro-uart2
+kernelimg=Image
+rootuuid=b921b045-1df0-41c3-af44-4c6f280d3fae
