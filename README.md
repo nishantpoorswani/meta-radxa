@@ -44,8 +44,9 @@ The meta-radxa layer depends on:
 2) RockPi-4B (Tested by Stephen Chan from Radxa Team)
 3) RockPi-4C (Tested by Stephen Chan from Radxa Team)
 4) RockPi-E
-5) RockPi-PX30
-6) RockPi-S
+5) RockPi-N10
+6) RockPi-PX30
+7) RockPi-S
 
 ## Using the meta-radxa layer <a name="meta_radxa_usage"></a>
 
@@ -129,15 +130,17 @@ DISTRO_FEATURES_remove = "wayland"
 
 ## Serial Console <a name="serial_console"></a>
 
-The Serial Console for RockPi-4 and RockPi-E is enabled on UART-2. The Serial Console for RockPi-S is enabled on UART-0.
+The Serial Console for RockPi-4, RockPi-E and RockPi-N10 is enabled on UART-2. The Serial Console for RockPi-S is enabled on UART-0.
 
 **Helpful Links:**
 
 + GPIO Pinout for RockPi-4 (https://wiki.radxa.com/Rockpi4/hardware/gpio)
 + GPIO Pinout for RockPi-E (https://wiki.radxa.com/RockpiE/hardware/rockpiE#gpio)
++ GPIO Pinout for RockPi-N10 (https://wiki.radxa.com/RockpiN10/hardware/rockpiN10#gpio)
 + GPIO Pinout for RockPi-S (https://wiki.radxa.com/RockpiS/hardware/gpio)
 + RockPi-4 Serial Console Setup (https://wiki.radxa.com/Rockpi4/dev/serial-console)
 + RockPi-E Serial Console Setup (https://wiki.radxa.com/RockpiE/dev/serial-console)
++ RockPi-N10 Serial Console Setup (https://wiki.radxa.com/RockpiN10/dev/serial-console)
 + RockPi-S Serial Console Setup (https://wiki.radxa.com/RockpiS/dev/serial-console)
 
 ## Login Details <a name="login"></a>
@@ -157,7 +160,7 @@ Password: rock
 
 ### Wifi Connectivity <a name="wifi"></a>
 
-+ Using Commandline Based GUI(nmtui)
++ Using Commandline Based GUI(nmtui) [Available on console and desktop images]
 
 nmtui is a curses based GUI. You can start it by running the following command:
 
@@ -165,7 +168,7 @@ nmtui is a curses based GUI. You can start it by running the following command:
 nmtui
 ```
 
-+ Using Commandline Utility(nmcli)
++ Using Commandline Utility(nmcli) [Available on console and desktop images]
 
 nmcli is a command-line tool for controlling NetworkManager and reporting network status.
 
@@ -199,11 +202,9 @@ nmcli dev wifi connect "SSID" password "PASSWORD"
 
 + Bluetooth on RockPi-4B/RockPi-4C
 
-**Manual setup for bluetooth:**
+**Activating bluetooth:**
 
 ```
-rfkill block bluetooth
-/usr/bin/brcm_patchram_plus -d --enable_hci --no2bytes --use_baudrate_for_downloade --tosleep 200000 --baudrate 1500000 --patchram /system/etc/firmware/BCM4345C5.hcd /dev/ttyS0 > /dev/null 2>&1 &
 hciconfig hci0 up
 ```
 
@@ -222,32 +223,7 @@ hciconfig hci0 up
 
 **Manual setup for bluetooth:**
 
-```
-rmmod btusb
-rmmod btrtl
-rmmod btbcm
-rmmod btintel
-rmmod bt_rtl8723du
-rmmod bt_rtl8821cu
-```
-
-***Now probe the correct driver depending on the wifi/bt chip present on your RockPi-E board*** 
- 
-If the Wifi/bt chip is RTL8723DU use the commands given below:
-
-```
- modprobe bt_rtl8723du
- hciconfig hci0 up
-```
-
-<div align="center"><b>OR</b></div>
-
-If the Wifi/bt chip is RTL8821CU use the commands given below:
-
-```
- modprobe bt_rtl8821cu
- hciconfig hci0 up
-```
+Bluetooth is activated by default on the RockPi-E
 
 **Check Bluetooth device:**
 
@@ -260,15 +236,30 @@ If the Wifi/bt chip is RTL8821CU use the commands given below:
          TX bytes:216782 acl:379 sco:0 commands:101 errors:0
 ```
 
-+ Bluetooth on RockPi-S
++ Bluetooth on RockPi-N10
 
-**Manual setup for bluetooth:**
+**Activating bluetooth:**
 
 ```
-echo 0 > /sys/class/rfkill/rfkill0/state
-echo 1 > /sys/class/rfkill/rfkill0/state
-insmod /lib/modules/4.4.143/kernel/drivers/bluetooth/hci_uart.ko
-rtk_hciattach -n -s 115200 /dev/ttyS4 rtk_h5 &
+hciconfig hci0 up
+```
+
+**Check Bluetooth device:**
+
+```
+ $ hciconfig
+ hci0:   Type: Primary  Bus: UART
+         BD Address: 22:22:70:B2:10:6F  ACL MTU: 1021:8  SCO MTU: 255:12
+         UP RUNNING 
+         RX bytes:1399 acl:0 sco:0 events:45 errors:0
+         TX bytes:3458 acl:0 sco:0 commands:45 errors:0
+```
+
++ Bluetooth on RockPi-S
+
+**Activating bluetooth:**
+
+```
 hciconfig hci0 up
 ```
 
@@ -295,32 +286,40 @@ hciconfig hci0 up
 + Kernel version: 4.4.194-12-615ae743115011bbe1cd1edc5c9118bf95527f54
 + U-Boot version: 2019.10-7b93f1b8bce4106266d4a38dde96fd8080faccea
 
-3. RockPi-PX30
+3. RockPi-N10
+
++ Kernel version: 4.4.167-c36a21e2be755919e8b406069206e67126b7e712
++ U-Boot version: 2017.09-7c49a7da79caf2f68bc1074dfa21864d7f23b9e1
+
+4. RockPi-PX30
 
 + Kernel version: 4.4.189-dc47906e88166ae315f0472743de4d80f2bea786
 + U-Boot version: 2017.09-cfc37de87bc064b2d6d384566e24c5e4245f113a
 
-4. RockPi-S
+5. RockPi-S
 
 + Kernel version: 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41
 + U-Boot version: 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
 
 ## Change Log <a name="change_log"></a>
 
++ Added board support for RockPi-N10
 + Added board support for RockPi-PX30
 + Added board support for RockPi-4A
-+ Added board support for RockPi-4B
++ Added board support for RockPi-4C
 + RockPi-4 Kernel updated to 4.4.154-109-b04eccb4588e333bdaf3ba7e6e4186d2ebe53770
 + RockPi-4 U-Boot branch updated from stable-4.4-rockpi4 to rk3399-pie-gms-express-baseline
 + RockPi-4 U-Boot updated to 2017.09-04d66f4b45a47531b5ff6cdbddcdc2cc35fa7aea
 + RockPi-4 boards support SPI + NVME booting
++ RockPi-4b dtb changed from rockpi-4b-linux.dtb to rk3399-rock-pi-4b.dtb
 + RockPi-S Kernel updated to 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41 
 + RockPi-S U-Boot updated to 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
 + RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
 + Use ttySx as debuger console instead of ttyFIQ0 for RockPi-S and RockPi-E
 + Major Reorganization in U-Boot recipes. New structure will make it easier for adding new boards
 + Added recipe for making desktop images
-+ Added recipe for setting up BT firmware and driver at boot for RockPi-S and RockPi-E
++ Added recipe for setting up BT firmware and driver at boot for Rockpi-4, RockPi-E, RockPi-N10 and RockPi-S
++ Added recipe for kernel-headers and file-system resize at boot
 
 ## Contributing <a name="contributing"></a>
 
