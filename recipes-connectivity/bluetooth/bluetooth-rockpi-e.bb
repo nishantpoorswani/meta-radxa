@@ -1,17 +1,15 @@
-SUMMARY = "Systemd service to setup BT for RockPi-E"
-DESCRIPTION = "Load Realtek Bluetooth Driver and Firmware for RTL8723DU and RTL8821CU chips"
+SUMMARY = "Disable loading of specific BT driver modules for ROCKPi-E"
+DESCRIPTION = "Disable loading of specific BT driver modules for ROCKPi-E"
 SECTION = "devel"
 
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 SRC_URI = " \
-	file://${MACHINE}/realtek-btfw-load.service;name=btfw-rockpie-service \
-	file://${MACHINE}/realtek-btfw-load.sh;name=btfw-rockpie-script \
+	file://${MACHINE}/blacklist-bt.conf;name=blacklist-bt-conf \
 "
 
-SRC_URI[btfw-rockpie-service.md5sum] = "7f5d318c7213d84a59f0884986334f6b"
-SRC_URI[btfw-rockpie-script.md5sum] = "577b213e71835e45365fe87b1da7000c"
+SRC_URI[blacklist-bt-conf.md5sum] = "a6702394f1b71a3466edae4e20e3ba7e"
 
 S = "${WORKDIR}"
 
@@ -20,12 +18,9 @@ inherit systemd
 RDEPENDS_${PN} += "bluez5 usbutils"
 
 do_install() {
-	install -d ${D}${systemd_system_unitdir}
-	install -m 0644 ${WORKDIR}/${MACHINE}/realtek-btfw-load.service ${D}${systemd_system_unitdir} 
-	install -d ${D}${exec_prefix}/local/bin
-	install -m 0755 ${WORKDIR}/${MACHINE}/realtek-btfw-load.sh ${D}${exec_prefix}/local/bin/realtek-btfw-load.sh
+	install -d ${D}${sysconfdir}
+	install -d ${D}${sysconfdir}/modprobe.d
+	install -m 0644 ${WORKDIR}/${MACHINE}/blacklist-bt.conf ${D}${sysconfdir}/modprobe.d/blacklist-bt.conf
 }
 
-SYSTEMD_SERVICE_${PN} = "realtek-btfw-load.service"
-
-FILES_${PN} += "${exec_prefix}/local/bin/realtek-btfw-load.sh"
+FILES_${PN} += "/etc/modprobe.d/blacklist-bt.conf"
