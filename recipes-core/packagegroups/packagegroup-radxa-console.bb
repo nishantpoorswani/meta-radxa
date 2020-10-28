@@ -18,4 +18,9 @@ RDEPENDS_packagegroup-radxa-console = "\
     openssh-sftp-server \
     bluez5 \
     dialog \
+    kernel-module-headers \
+    i2c-tools \
+    sudo \
+    net-tools \
+    findutils \    
     "
