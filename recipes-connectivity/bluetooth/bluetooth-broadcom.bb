@@ -10,9 +10,9 @@ SRC_URI = " \
 	file://broadcom-bluetooth/brcm-btfw-update.service;name=brcm-btfw-update-service \
 	file://broadcom-bluetooth/update-brcm-btfw-load-service.sh;name=update-brcm-btfw-load-service-script \
 "
-SRC_URI[brcm-btfw-load-service.md5sum] = "1f325873e96b7e02faf394e7823b75d3"
+SRC_URI[brcm-btfw-load-service.md5sum] = "8e2c44ed070ef4544a12f702575fbc37"
 SRC_URI[brcm-btfw-update-service.md5sum] = "0762eb091d41d24a709a1679d1ce38f6"
-SRC_URI[update-brcm-btfw-load-service-script.md5sum] = "bd4e2816381b53e6a18b0778cdf577dc"
+SRC_URI[update-brcm-btfw-load-service-script.md5sum] = "865e47d2d247b9435d73a78369b82c14"
 
 inherit systemd
 
