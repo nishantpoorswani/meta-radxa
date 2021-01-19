@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/radxa/u-boot"
 LICENSE = "GPLv2+"
 COMPATIBLE_MACHINE = "(px30|rk3036|rk3066|rk3188|rk3288|rk3328|rk3399|rk3308|rk3399pro)"
 SECTION = "bootloaders"
-DEPENDS = "dtc-native bc-native swig-native bison-native"
+DEPENDS = "dtc-native bc-native swig-native bison-native coreutils-native"
 
 S = "${WORKDIR}/git"
 
