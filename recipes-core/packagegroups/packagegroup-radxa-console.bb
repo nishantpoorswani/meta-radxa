@@ -22,5 +22,7 @@ RDEPENDS_packagegroup-radxa-console = "\
     i2c-tools \
     sudo \
     net-tools \
-    findutils \    
+    findutils \
+    mraa-radxa-dev \
+    mraa-radxa-utils \    
     "
