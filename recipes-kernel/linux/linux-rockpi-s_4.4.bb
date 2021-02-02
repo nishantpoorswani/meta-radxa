@@ -9,6 +9,7 @@ do_compile[depends] += "u-boot-mkimage-radxa-native:do_populate_sysroot"
 
 SRC_URI = " \
 	git://github.com/radxa/kernel.git;branch=stable-4.4-rockpis; \
+	file://0001-Fix-GCC-9-Wmissing-attributes-warnings-error.patch \
 "
 
 SRCREV = "6b7accbc999b6caa8ef603b9d904c99694d0bf41"

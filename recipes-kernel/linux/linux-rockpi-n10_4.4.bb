@@ -9,6 +9,7 @@ SRC_URI = " \
 	git://github.com/radxa/kernel.git;branch=rk3399pro-toybrick-stable; \
 	file://0001-UPSTREAM-arm64-vdso-Define-vdso_-start-end-as-array.patch \
 	file://0001-Makefile-disable-gcc9-s-address-of-packed-member-war.patch \
+	file://0001-Fix-GCC-9-Wmissing-attributes-warnings-error.patch \
 "
 
 SRCREV = "c36a21e2be755919e8b406069206e67126b7e712"
