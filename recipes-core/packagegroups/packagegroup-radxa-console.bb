@@ -12,6 +12,7 @@ RDEPENDS_packagegroup-radxa-console = "\
     hostapd \
     htop \
     iptables \
+    iproute2 \
     kernel-modules \
     networkmanager \
     networkmanager-nmtui \
@@ -24,5 +25,5 @@ RDEPENDS_packagegroup-radxa-console = "\
     net-tools \
     findutils \
     mraa-radxa-dev \
-    mraa-radxa-utils \    
+    mraa-radxa-utils \
     "
