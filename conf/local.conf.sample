@@ -101,3 +101,6 @@ DISTRO_FEATURES_append = " pam systemd x11"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 PACKAGECONFIG_append_pn-systemd = " resolved networkd"
 DISTRO_FEATURES_remove = "wayland"
+
+# Uncomment the following line to add the extra packages
+#IMAGE_INSTALL_append = " create-ap"
