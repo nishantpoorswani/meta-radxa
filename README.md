@@ -313,13 +313,13 @@ hciconfig hci0 up
 + RockPi-4 boards support SPI + NVME booting
 + RockPi-4b dtb changed from rockpi-4b-linux.dtb to rk3399-rock-pi-4b.dtb
 + RockPi-S Kernel updated to 4.4.143-55-6b7accbc999b6caa8ef603b9d904c99694d0bf41 
-+ RockPi-S U-Boot updated to 2017.09-233a23e3ed0b3e5250253ee455c3c5df2080f99c
++ RockPi-S U-Boot updated to 2017.09-c93a0fc70993c12e605b1312577252ca9cdec6c8
 + RockPi-S and RockPi-E gpt images have now been updated to use the 2 partition instead of the tradition 5 partition
 + Use ttySx as debuger console instead of ttyFIQ0 for RockPi-S and RockPi-E
 + Major Reorganization in U-Boot recipes. New structure will make it easier for adding new boards
 + Added recipe for making desktop images
 + Added recipe for setting up BT firmware and driver at boot for Rockpi-4, RockPi-E, RockPi-N10 and RockPi-S
-+ Added recipe for kernel-headers and file-system resize at boot
++ Added recipe for kernel-headers, file-system resize at boot, mraa and create-ap
 
 ## Contributing <a name="contributing"></a>
 

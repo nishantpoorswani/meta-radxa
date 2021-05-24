@@ -13,4 +13,4 @@ SRC_URI = " \
 	file://${MACHINE}/uEnv.txt \
 "
 
-SRCREV = "233a23e3ed0b3e5250253ee455c3c5df2080f99c"
+SRCREV = "c93a0fc70993c12e605b1312577252ca9cdec6c8"
